@@ -22,16 +22,13 @@ class DetalhesFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(DetalhesViewModel::class.java)
         binding = FragmentDetalhesBinding.inflate(inflater, container, false)
         val url = DetalhesFragmentArgs.fromBundle(requireArguments()).url
-        val id = url.replace("[^0-9]".toRegex(), "").replace("2","")
+        //val id = url.replace("[^0-9]".toRegex(), "").replace("2","")
         viewModel.getPokemon(url)
-        Log.i("URL", viewModel.pokemon.value?.imagemUrl.toString())
-        Glide.with(this).load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png").into(binding.imageView)
+        viewModel.pokemon.observe(viewLifecycleOwner) {
+            Glide.with(this).load(it.imagemUrl).into(binding.imageView)
+        }
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-
-
-
 
 
         return binding.root

@@ -46,7 +46,7 @@ class HomeViewModel: ViewModel() {
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.i("ERRO", "Erro ao buscar os dados")
+                Log.i("ERRO", t.message.toString())
             }
 
         })

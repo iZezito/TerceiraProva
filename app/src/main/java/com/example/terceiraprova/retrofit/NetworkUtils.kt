@@ -5,8 +5,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkUtils {
     companion object {
-
-
         fun getRetrofitInstance(path : String) : Retrofit {
             return Retrofit.Builder()
                 .baseUrl(path)
